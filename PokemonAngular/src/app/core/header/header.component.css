@@ -1,0 +1,16 @@
+.mat-toolbar {
+    color: white;
+    background-color: tomato;
+    padding: 40px;
+}
+
+span {
+    font-weight: 600;
+}
+
+div {
+    background-image: url('../../../assets/logo.png');
+    height: 70px;
+    width: 250px;
+    background-size: 250px 70px;
+}
