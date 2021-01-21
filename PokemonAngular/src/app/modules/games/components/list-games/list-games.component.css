@@ -1,0 +1,28 @@
+.mat-card {
+    background-color: rgb(209, 130, 116);
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mat-icon {
+    right: 0px;
+    position: absolute;
+    margin-right: 10px;
+    color: white;
+    font-size: 30px;
+}
+
+.mat-card-subtitle {
+    font-weight: 500;
+    color: white;
+}
+
+a :hover {
+    background-color: rgb(231, 156, 143);
+}
+
+a {
+    text-decoration: none;
+}
