@@ -1,8 +1,8 @@
-<ng-container *ngFor="let value of [0,1,2,3] ">
+<ng-container *ngFor="let game of games ">
 
-    <a href="teste">
+    <a href="home/pokemon">
         <mat-card>
-            <mat-card-subtitle>Geração II</mat-card-subtitle>
+            <mat-card-subtitle>{{game.name}}</mat-card-subtitle>
             <mat-icon>keyboard_arrow_right</mat-icon>
 
         </mat-card>
