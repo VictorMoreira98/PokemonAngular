@@ -1,8 +1,8 @@
-<ng-container *ngFor="let game of games ">
+<ng-container *ngFor="let game of games; index as i; ">
 
-    <a href="home/pokemon">
+    <a href="home/pokemon/{{i+1}}">
         <mat-card>
-            <mat-card-subtitle>{{game.name}}</mat-card-subtitle>
+            <mat-card-subtitle>{{generation[i]}}</mat-card-subtitle>
             <mat-icon>keyboard_arrow_right</mat-icon>
 
         </mat-card>

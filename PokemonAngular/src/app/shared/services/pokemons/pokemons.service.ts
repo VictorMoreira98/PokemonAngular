@@ -1,27 +1,24 @@
-import { GameObjJson } from './../models/game.model';
-import { environment } from './../../../environments/environment';
-
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Pokemon } from './../../models/pokemons/pokemon.model';
+import { environment } from './../../../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
-
-import { map, catchError } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GamesService {
+export class PokemonsService {
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
   api: string = environment.pokemon.api;
 
-  read(): Observable<GameObjJson> {
-
-    return this.http.get<GameObjJson>(this.api).pipe(
-      map((obj) => obj),
+  readPhotoPokemon(id): Observable<any> {
+    const url = `${this.api}/pokemon/${id}`
+    return this.http.get<any>(url).pipe(
+      map((obj) => obj['sprites']),
       catchError((e) => this.errorHandler(e))
     );
   }
@@ -36,9 +33,7 @@ export class GamesService {
   }
 
   errorHandler(e: any): Observable<any> {
-    console.log(e);
-    this.showMessage("Ocorreu um erro!", true);
+    this.showMessage("Alguns Pokémons sem Imagem!", true);
     return;
   }
-
 }

@@ -1,0 +1,12 @@
+<p>Nº Pokémons: {{pokemons.length}}</p>
+<div class="container">
+
+    <mat-card *ngFor="let pokemon of pokemons">
+        <div class="imgPokemon" style="background-image: url({{pokemon.photo}});"></div>
+        <p class="namePokemon">{{pokemon.name}}</p>
+    </mat-card>
+
+
+
+
+</div>

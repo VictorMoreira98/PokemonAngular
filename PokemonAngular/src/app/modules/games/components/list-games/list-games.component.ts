@@ -1,6 +1,9 @@
-import { GamesService } from './../../../../shared/services/games.service';
+import { nameGames } from './../../../../shared/utils/name-games';
+
+
+import { GamesService } from '../../../../shared/services/games/games.service';
 import { Component, OnInit } from '@angular/core';
-import { Game } from 'src/app/shared/models/game.model';
+import { Game } from 'src/app/shared/models/games/game.model';
 
 @Component({
   selector: 'app-list-games',
@@ -10,6 +13,7 @@ import { Game } from 'src/app/shared/models/game.model';
 export class ListGamesComponent implements OnInit {
 
   games : Game[]
+  generation : string[]
 
   constructor(private gameService: GamesService) { }
 
@@ -19,6 +23,8 @@ export class ListGamesComponent implements OnInit {
     this.gameService.read().subscribe(games => {
 
       this.games = games.results
+
+      this.generation = nameGames;
 
     })
   }
