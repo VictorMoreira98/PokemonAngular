@@ -9,7 +9,7 @@ span {
 }
 
 div {
-    background-image: url('../../../assets/logo.png');
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1280px-International_Pok%C3%A9mon_logo.svg.png');
     height: 70px;
     width: 250px;
     background-size: 250px 70px;

@@ -1,7 +1,16 @@
 <p>Nº Pokémons: {{pokemons.length}}</p>
+
+<mat-form-field>
+
+    <input matInput placeholder="Pesquise um Pokémon..." name="searchInput" [(ngModel)]="searchInput">
+
+
+</mat-form-field>
+
+
 <div class="container">
 
-    <mat-card *ngFor="let pokemon of pokemons">
+    <mat-card *ngFor="let pokemon of pokemons | search: searchInput">
         <div class="imgPokemon" style="background-image: url({{pokemon.photo}});"></div>
         <p class="namePokemon">{{pokemon.name}}</p>
     </mat-card>

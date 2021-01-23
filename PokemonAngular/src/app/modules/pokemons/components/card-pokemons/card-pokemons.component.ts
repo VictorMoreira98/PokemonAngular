@@ -3,7 +3,7 @@ import { Pokemon } from './../../../../shared/models/pokemons/pokemon.model';
 import { GamesService } from './../../../../shared/services/games/games.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { element } from 'protractor';
+
 
 @Component({
   selector: 'app-card-pokemons',
@@ -16,6 +16,8 @@ export class CardPokemonsComponent implements OnInit {
 
   pokemons : Pokemon[]
 
+  public searchInput: string; 
+
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id')
     this.gameService.readById(id).subscribe(pokemon => {
@@ -25,12 +27,8 @@ export class CardPokemonsComponent implements OnInit {
         this.pokemonService.readPhotoPokemon(pokemon[index].name).subscribe(photo =>{
           this.pokemons[index].photo = photo['front_default']
         })}
-         
-       
-       //pokemon.forEach(element => this.pokemonService.readPhotoPokemon(element.url))
-       
-
     })
   }
+
 
 }
