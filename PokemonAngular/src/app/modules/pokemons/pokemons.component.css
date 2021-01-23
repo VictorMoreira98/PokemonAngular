@@ -1,11 +1,40 @@
 .mat-card {
     margin: 60px;
     display: flex;
+    flex-direction: column;
+}
+
+.mat-card-header {
+    display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
 .mat-card-title {
     margin-bottom: 20px;
+}
+
+p {
+    font-weight: bold;
+    color: rgb(158, 155, 155);
+    font-size: 15px;
+    margin-left: 50px;
+}
+
+.mat-form-field {
+    margin-left: 50px;
+    width: 92%;
+}
+
+@media only screen and (max-width: 600px) {
+    .mat-form-field {
+        margin-left: 50px;
+        width: 80%;
+    }
+}
+
+.subtitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
 }

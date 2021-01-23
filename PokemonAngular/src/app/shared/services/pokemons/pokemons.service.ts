@@ -15,6 +15,12 @@ export class PokemonsService {
 
   api: string = environment.pokemon.api;
 
+  public searchInput: string; 
+
+  pokemonCount : number
+
+
+
   readPhotoPokemon(id): Observable<any> {
     const url = `${this.api}/pokemon/${id}`
     return this.http.get<any>(url).pipe(

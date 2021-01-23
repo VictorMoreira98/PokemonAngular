@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  pokemonangular:
+    image: pokemonangular
+    build: .
+    ports:
+      - 8081:80

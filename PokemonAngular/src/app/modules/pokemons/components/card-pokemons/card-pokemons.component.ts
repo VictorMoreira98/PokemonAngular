@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CardPokemonsComponent implements OnInit {
 
-  constructor(private gameService : GamesService, private pokemonService : PokemonsService,  private route: ActivatedRoute) { }
+  constructor(private gameService : GamesService, public pokemonService : PokemonsService,  private route: ActivatedRoute) { }
 
   pokemons : Pokemon[]
 
@@ -22,6 +22,8 @@ export class CardPokemonsComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id')
     this.gameService.readById(id).subscribe(pokemon => {
        this.pokemons  = pokemon;
+
+       this.pokemonService.pokemonCount = this.pokemons.length
 
        for (let index = 0; index < pokemon.length; index++) {
         this.pokemonService.readPhotoPokemon(pokemon[index].name).subscribe(photo =>{

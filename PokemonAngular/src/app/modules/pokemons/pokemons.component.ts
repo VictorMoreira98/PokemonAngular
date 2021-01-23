@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PokemonsComponent implements OnInit {
 
-  constructor(public gamesService: GamesService, private route : ActivatedRoute) { }
+  constructor(public gamesService: GamesService, private route : ActivatedRoute, public pokemonService : PokemonsService) { }
 
   generation : string
 

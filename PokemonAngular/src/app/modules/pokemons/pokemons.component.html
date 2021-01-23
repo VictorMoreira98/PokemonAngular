@@ -1,11 +1,27 @@
 <mat-card>
     <mat-card-header>
         <mat-card-title>Pokémons {{generation}}</mat-card-title>
+
     </mat-card-header>
 
-    <div>
-        <app-card-pokemons></app-card-pokemons>
+    <div class="subtitle">
+        <p>Nº Pokémons: {{pokemonService.pokemonCount}}</p>
+
+
+        <mat-form-field>
+
+            <input matInput placeholder="Pesquise um Pokémon..." name="searchInput" [(ngModel)]="pokemonService.searchInput">
+
+
+        </mat-form-field>
     </div>
+
+
+    <app-card-pokemons></app-card-pokemons>
+
+
+
+
 
 
 </mat-card>
