@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   pokemon: {
-    api: "https://pokeapi.co/api/v2/generation"
+    api: "https://pokeapi.co/api/v2"
   }
 };
 
