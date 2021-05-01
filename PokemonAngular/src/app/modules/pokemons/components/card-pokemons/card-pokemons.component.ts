@@ -26,7 +26,7 @@ export class CardPokemonsComponent implements OnInit {
        this.pokemonService.pokemonCount = this.pokemons.length
 
        for (let index = 0; index < pokemon.length; index++) {
-        this.pokemonService.readPhotoPokemon(pokemon[index].name).subscribe(photo =>{
+        this.pokemonService.readPhotoPokemon(pokemon[index].name, index).subscribe(photo =>{
           this.pokemons[index].photo = photo['front_default']
         })}
     })

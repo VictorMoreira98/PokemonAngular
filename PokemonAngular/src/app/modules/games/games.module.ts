@@ -1,3 +1,4 @@
+import { GamesRoutingModule } from './games-routing.module';
 
 
 import { NgModule } from '@angular/core';
@@ -15,8 +16,8 @@ import { ListGamesComponent } from './components/list-games/list-games.component
   imports: [
     CommonModule,
     MatCardModule,
-    MatIconModule
-    
+    MatIconModule,
+    GamesRoutingModule
     
   ],
   exports: [

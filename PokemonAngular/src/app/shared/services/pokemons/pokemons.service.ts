@@ -4,42 +4,47 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, shareReplay } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PokemonsService {
-
-  constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
   api: string = environment.pokemon.api;
 
-  public searchInput: string; 
+  public searchInput: string;
 
-  pokemonCount : number
+  pokemonCount: number;
+  readPhotoPokemonObs: Observable<any>[] = [];
 
-
-
-  readPhotoPokemon(id): Observable<any> {
-    const url = `${this.api}/pokemon/${id}`
-    return this.http.get<any>(url).pipe(
-      map((obj) => obj['sprites']),
-      catchError((e) => this.errorHandler(e))
-    );
+  readPhotoPokemon(id, index): Observable<any> {
+    const url = `${this.api}/pokemon/${id}`;
+    
+    if (!this.readPhotoPokemonObs[index]) {
+      this.readPhotoPokemonObs.push(
+        this.http.get<any>(url).pipe(
+          map((obj) => obj['sprites']),
+          shareReplay(1),
+          catchError((e) => this.errorHandler(e))
+        )
+      );
+    }
+    return this.readPhotoPokemonObs[index];
   }
 
-  showMessage(msg: string, isError: boolean = false): void{
+  showMessage(msg: string, isError: boolean = false): void {
     this.snackBar.open(msg, 'X', {
       duration: 3000,
-      horizontalPosition: "right",
-      verticalPosition: "top",
-      panelClass: isError ? ['msg-error'] : ['msg-success']
-    })
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: isError ? ['msg-error'] : ['msg-success'],
+    });
   }
 
   errorHandler(e: any): Observable<any> {
-    this.showMessage("Alguns Pokémons sem Imagem!", true);
+    this.showMessage('Alguns Pokémons sem Imagem!', true);
     return;
   }
 }
