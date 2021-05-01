@@ -17,21 +17,19 @@ export class PokemonsService {
   public searchInput: string;
 
   pokemonCount: number;
-  readPhotoPokemonObs: Observable<any>[] = [];
+  readPhotoPokemonObs: { [key: string]: Observable<any> } = {'' : null};
 
   readPhotoPokemon(id, index): Observable<any> {
     const url = `${this.api}/pokemon/${id}`;
-    
-    if (!this.readPhotoPokemonObs[index]) {
-      this.readPhotoPokemonObs.push(
-        this.http.get<any>(url).pipe(
-          map((obj) => obj['sprites']),
-          shareReplay(1),
-          catchError((e) => this.errorHandler(e))
-        )
+   
+    if (!this.readPhotoPokemonObs[id]) {
+      this.readPhotoPokemonObs[id] = this.http.get<any>(url).pipe(
+        map((obj) => obj['sprites']),
+        shareReplay(1),
+        catchError((e) => this.errorHandler(e))
       );
     }
-    return this.readPhotoPokemonObs[index];
+    return this.readPhotoPokemonObs[id];
   }
 
   showMessage(msg: string, isError: boolean = false): void {

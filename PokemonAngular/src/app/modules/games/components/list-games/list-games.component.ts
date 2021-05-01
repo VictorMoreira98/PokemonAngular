@@ -26,15 +26,6 @@ export class ListGamesComponent implements OnInit {
 
       this.generation = nameGames;
     })
-
-    this.gameService.read().subscribe(games => {
-
-      this.games = games.results
-
-      this.generation = nameGames;
-
-    })
   }
-
 
 }

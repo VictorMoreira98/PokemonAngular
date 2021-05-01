@@ -22,11 +22,12 @@ export class GamesService {
 
   pokemon: Pokemon[];
   readObs: Observable<GameObjJson>;
-  readByIdObs: Observable<Pokemon[]>;
+  readByIdObs:{ [key: string]: Observable<Pokemon[]> } = {'' : null};
 
   read = (): Observable<GameObjJson> => {
     const url = `${this.api}/generation`;
     if (!this.readObs) {
+      console.log('entrou')
       this.readObs = this.http.get<GameObjJson>(url).pipe(
         shareReplay(1),
         map((obj) => obj),
@@ -39,14 +40,14 @@ export class GamesService {
   readById = (id: number): Observable<Pokemon[]> => {
     const url = `${this.api}/generation/${id}`;
 
-    if (!this.readByIdObs) {
-      this.readByIdObs = this.http.get<Pokemon[]>(url).pipe(
+    if (!this.readByIdObs[id]) {
+      this.readByIdObs[id] = this.http.get<Pokemon[]>(url).pipe(
         map((obj) => obj['pokemon_species']),
         shareReplay(1),
         catchError((e) => this.errorHandler(e))
       );
     }
-    return this.readByIdObs;
+    return this.readByIdObs[id];
   };
 
   showMessage(msg: string, isError: boolean = false): void {
